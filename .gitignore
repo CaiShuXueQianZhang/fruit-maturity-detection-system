@@ -68,12 +68,12 @@ backend/models/rsod_yolo11n/
 backend/models/yolo11n.pt
 
 # 原始数据集
-backend/data/
+backend/data/*
 !backend/data/.gitkeep
 
 # 静态文件目录（上传图片、检测结果）
-backend/static/uploads/
-backend/static/results/
+backend/static/uploads/*
+backend/static/results/*
 !backend/static/uploads/.gitkeep
 !backend/static/results/.gitkeep
 !backend/static/.gitkeep

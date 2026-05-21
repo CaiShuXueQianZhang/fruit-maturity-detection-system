@@ -74,7 +74,8 @@ backend/data/
 # 静态文件目录（上传图片、检测结果）
 backend/static/uploads/
 backend/static/results/
-!backend/static/.gitkeep
+!backend/static/uploads/.gitkeep
+!backend/static/results/.gitkeep
 
 # ==================================
 # Docker 数据目录（统一存储）

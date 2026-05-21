@@ -18,14 +18,6 @@ __pycache__/
 .env.local
 .env.*.local
 
-# 静态文件目录（上传图片、检测结果）
-static/uploads/
-static/results/
-
-# 保持空目录结构（实际文件不提交）
-!static/uploads/.gitkeep
-!static/results/.gitkeep
-
 # 本地数据库文件
 *.db
 *.sqlite

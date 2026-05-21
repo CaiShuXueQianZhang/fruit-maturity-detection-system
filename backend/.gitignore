@@ -22,10 +22,12 @@ __pycache__/
 static/uploads/
 static/results/
 
+# 保持空目录结构（实际文件不提交）
+!static/uploads/.gitkeep
+!static/results/.gitkeep
+
 # 本地数据库文件
 *.db
 *.sqlite
 
-# 保持空目录结构（实际文件不提交）
-static/uploads/.gitkeep
-static/results/.gitkeep
+

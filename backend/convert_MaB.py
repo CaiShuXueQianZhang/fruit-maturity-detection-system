@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-RSOD 数据集转换工具 - 生产环境版本
+MaB 数据集转换工具 - 生产环境版本
 
 功能：
-    - 将 RSOD 数据集（XML 标注格式）转换为 YOLO 格式
+    - 将 MaB 数据集（XML 标注格式）转换为 YOLO 格式
     - 支持数据集分割、数据校验、日志记录
     - 生成标准的 YOLO 数据集配置文件
 
 使用方式：
-    python convert_rsod.py [--split 0.8] [--seed 42] [--verbose]
+    python convert_MaB.py [--split 0.8] [--seed 42] [--verbose]
 """
 
 import os
@@ -35,11 +35,11 @@ CLASSES = ["aircraft", "oiltank", "overpass", "playground"]
 CLASS_MAP = {cls: idx for idx, cls in enumerate(CLASSES)}
 
 
-class RSODConverter:
+class MaBConverter:
     """
-    RSOD 数据集转换类
+    MaB 数据集转换类
     
-    负责将 RSOD 数据集从 Pascal VOC 格式（XML）转换为 YOLO 格式
+    负责将 MaB 数据集从 Pascal VOC 格式（XML）转换为 YOLO 格式
     """
     
     def __init__(self, base_dir: str = None, split_ratio: float = 0.8, seed: int = 42):
@@ -60,8 +60,8 @@ class RSODConverter:
         self.seed = seed
         
         # 路径配置
-        self.rsod_dir = self.base_dir / "data" / "rsod"
-        self.yolo_dir = self.rsod_dir / "yolo_dataset"
+        self.MaB_dir = self.base_dir / "data" / "MaB"
+        self.yolo_dir = self.MaB_dir / "yolo_dataset"
         
         # YOLO 数据集目录结构
         self.train_images_dir = self.yolo_dir / "images" / "train"
@@ -70,8 +70,8 @@ class RSODConverter:
         self.val_labels_dir = self.yolo_dir / "labels" / "val"
         
         # 原始数据目录
-        self.annotations_dir = self.rsod_dir / "annotations"
-        self.images_dir = self.rsod_dir / "images"
+        self.annotations_dir = self.MaB_dir / "annotations"
+        self.images_dir = self.MaB_dir / "images"
         
         # 统计信息
         self.stats = {
@@ -179,7 +179,7 @@ class RSODConverter:
     
     def _create_yaml_config(self):
         """创建 YOLO 数据集配置文件"""
-        yaml_content = f"""# RSOD 数据集配置文件
+        yaml_content = f"""# MaB 数据集配置文件
 # 数据集路径（相对于运行目录）
 path: {self.yolo_dir.resolve()}
 
@@ -192,11 +192,11 @@ nc: {len(CLASSES)}
 names: {CLASSES}
 
 # 数据集描述
-# RSOD (Remote Sensing Object Detection) 数据集
-# 包含 4 类遥感目标：飞机(aircraft)、油罐(oiltank)、立交桥(overpass)、操场(playground)
+# MaB (Mango and Banana) 数据集
+# 包含 4 类目标：aircraft、oiltank、overpass、playground
 """
         
-        yaml_path = self.yolo_dir / "rsod.yaml"
+        yaml_path = self.yolo_dir / "MaB.yaml"
         with open(yaml_path, "w", encoding="utf-8") as f:
             f.write(yaml_content)
         

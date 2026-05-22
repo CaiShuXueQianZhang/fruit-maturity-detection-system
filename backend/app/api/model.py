@@ -65,9 +65,9 @@ async def get_model_list():
             "message": "获取成功",
             "data": [
                 {
-                    "object_name": "rsod-yolo11n-best_v1.0.0_20240101090000.pt",
+                    "object_name": "mab-yolo11m-best_v1.0.0_20240101090000.pt",
                     "metadata": {...},
-                    "public_url": "http://localhost:9000/rsod-models/..."
+                    "public_url": "http://localhost:9000/mab-models/..."
                 }
             ],
             "latest": {...}

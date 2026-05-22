@@ -2,7 +2,7 @@
 # 包含预训练模型和自定义训练模型
 #
 # 建议存放的文件：
-# - yolo11n.pt          # YOLO11n预训练模型
-# - rsod_yolo11n/       # 自定义训练模型目录
+# - yolo11m.pt          # yolo11m预训练模型
+# - mab_yolo11m/       # 自定义训练模型目录
 #   - best.pt           # 最佳权重
 #   - last.pt           # 最后权重

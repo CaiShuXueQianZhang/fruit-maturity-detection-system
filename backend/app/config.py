@@ -50,9 +50,9 @@ class DatabaseConfig(BaseModel):
     配置项：
         host: 数据库服务器地址，默认 localhost
         port: 数据库服务端口，默认 5432（PostgreSQL 标准端口）
-        username: 数据库用户名，默认 rsod_user
-        password: 数据库密码，默认 rsod_password
-        database: 数据库名称，默认 rsod_platform
+        username: 数据库用户名，默认 mab_user
+        password: 数据库密码，默认 mab_password
+        database: 数据库名称，默认 mab_platform
     """
 
     # 数据库主机地址，从环境变量 DB_HOST 读取，默认为 localhost
@@ -61,15 +61,15 @@ class DatabaseConfig(BaseModel):
     # 数据库端口，从环境变量 DB_PORT 读取，转换为整数，默认为 5432
     port: int = int(os.getenv("DB_PORT", "5432"))
 
-    # 数据库用户名，从环境变量 DB_USERNAME 读取，默认为 rsod_user
-    username: str = os.getenv("DB_USERNAME", "rsod_user")
+    # 数据库用户名，从环境变量 DB_USERNAME 读取，默认为 mab_user
+    username: str = os.getenv("DB_USERNAME", "mab_user")
 
-    # 数据库密码，从环境变量 DB_PASSWORD 读取，默认为 rsod_password
+    # 数据库密码，从环境变量 DB_PASSWORD 读取，默认为 mab_password
     # 注意：生产环境应使用强密码并通过环境变量传入
-    password: str = os.getenv("DB_PASSWORD", "rsod_password")
+    password: str = os.getenv("DB_PASSWORD", "mab_password")
 
-    # 数据库名称，从环境变量 DB_DATABASE 读取，默认为 rsod_platform
-    database: str = os.getenv("DB_DATABASE", "rsod_platform")
+    # 数据库名称，从环境变量 DB_DATABASE 读取，默认为 mab_platform
+    database: str = os.getenv("DB_DATABASE", "mab_platform")
 
 
 # =============================================================================
@@ -112,13 +112,13 @@ class MinIOConfig(BaseModel):
     secure: bool = os.getenv("MINIO_SECURE", "false").lower() in ("true", "1", "yes")
 
     # 原始图片存储桶名称，用于保存上传的原始图片
-    original_bucket: str = "rsod-original"
+    original_bucket: str = "mab-original"
 
     # 检测结果图片存储桶名称，用于保存检测后的图片
-    results_bucket: str = "rsod-results"
+    results_bucket: str = "mab-results"
 
     # 模型文件存储桶名称，用于保存 AI 模型文件（设置为私有访问）
-    models_bucket: str = "rsod-models"
+    models_bucket: str = "mab-models"
 
 
 # =============================================================================
@@ -180,7 +180,7 @@ class Settings(BaseModel):
     # -------------------------------------------------------------------------
 
     # 应用名称，用于 API 文档标题
-    app_name: str = os.getenv("APP_NAME", "RSOD Detection Platform")
+    app_name: str = os.getenv("APP_NAME", "mab Detection Platform")
 
     # 应用版本号
     app_version: str = os.getenv("APP_VERSION", "1.0.0")
@@ -241,8 +241,8 @@ class Settings(BaseModel):
     # -------------------------------------------------------------------------
 
     # YOLO 模型文件路径，相对于项目根目录
-    # 支持的模型：yolo11n.pt, yolo11s.pt, yolo11m.pt 等
-    yolo_model_path: str = os.getenv("YOLO_MODEL_PATH", "models/yolo11n.pt")
+    # 支持的模型：yolo11m.pt, yolo11s.pt, yolo11m.pt 等
+    yolo_model_path: str = os.getenv("YOLO_MODEL_PATH", "models/best.pt")
 
     # 目标检测置信度阈值
     # 只有检测框置信度 >= 此值的结果才会被保留

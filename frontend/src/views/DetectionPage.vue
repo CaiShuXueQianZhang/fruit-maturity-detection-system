@@ -7,16 +7,16 @@
         <span class="separator">›</span>
         <span class="active">智能检测</span>
       </div>
-      <h1 class="page-title">上传遥感影像，立即识别多类目标</h1>
+      <h1 class="page-title">上传水果图像，立即识别成熟度</h1>
       <p class="page-subtitle">
-        支持飞机 / 油罐 / 操场 / 建筑物 / 船舶 / 农业虫害等多目标检测
+        支持 香蕉 / 芒果 等多目标检测
       </p>
     </div>
 
     <!-- 模型选择器 -->
     <div class="model-selector">
       <el-select v-model="selectedModel" style="width: 180px">
-        <el-option label="rsod-yolo11n" value="rsod-yolo11n" />
+        <el-option label="mab-yolo11m" value="mab-yolo11m" />
       </el-select>
     </div>
 
@@ -223,7 +223,7 @@ import {
 } from "@element-plus/icons-vue";
 import { detectSingleImage } from "../api/detection";
 
-const selectedModel = ref("rsod-yolo11n");
+const selectedModel = ref("mab-yolo11m");
 const activeTab = ref("single");
 const compareMode = ref("side");
 const originalImage = ref(null);

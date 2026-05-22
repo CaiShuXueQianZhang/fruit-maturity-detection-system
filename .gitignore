@@ -63,9 +63,9 @@ yolo_dataset/
 # 数据文件（不应提交）
 # ==================================
 # 训练好的模型（保留目录结构）
-backend/models/rsod_yolo11n/
+backend/models/rsod_yolo11m/
 !backend/models/.gitkeep
-backend/models/yolo11n.pt
+backend/models/yolo11m.pt
 
 # 原始数据集
 backend/data/*

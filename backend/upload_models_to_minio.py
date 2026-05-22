@@ -68,9 +68,9 @@ def main():
     
     # 模型文件列表
     model_files = [
-        ("yolo11n.pt", "yolo11n"),
-        ("rsod_yolo11n/weights/best.pt", "rsod-yolo11n-best"),
-        ("rsod_yolo11n/weights/last.pt", "rsod-yolo11n-last"),
+        ("yolo11m.pt", "yolo11m"),
+        ("mab_yolo11m/weights/best.pt", "mab-yolo11m-best"),
+        ("mab_yolo11m/weights/last.pt", "mab-yolo11m-last"),
     ]
     
     uploaded_models = []

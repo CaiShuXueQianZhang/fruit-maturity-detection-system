@@ -122,7 +122,7 @@ def test_minio():
             print(f"    - {bucket.name}")
 
         # 测试生成 URL
-        test_url = minio_service.get_public_url("rsod-original", "test.jpg")
+        test_url = minio_service.get_public_url("mab-original", "test.jpg")
         print(f"  ✅ 公开 URL 生成: {test_url}")
 
         return True

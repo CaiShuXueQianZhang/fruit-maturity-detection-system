@@ -18,7 +18,7 @@
 #   # 前端调用
 #   const formData = new FormData();
 #   formData.append('file', imageFile);
-#   formData.append('model_name', 'rsod-yolo11n');
+#   formData.append('model_name', 'mab-yolo11m');
 #   const response = await fetch('/api/detection/single', {
 #       method: 'POST',
 #       body: formData
@@ -72,7 +72,7 @@ ensure_directories()
 @router.post("/single", response_model=SingleDetectionResponse)
 async def detect_single_image(
     file: UploadFile = File(...),      # 上传的图片文件（必填）
-    model_name: str = Form("rsod-yolo11n"), # 使用的模型名称（可选）
+    model_name: str = Form("mab-yolo11m"), # 使用的模型名称（可选）
     user_id: str = Form(None)          # 用户 ID（可选）
 ):
     """
@@ -87,7 +87,7 @@ async def detect_single_image(
 
     参数：
         file: 上传的图片文件，支持 jpg、png 等格式
-        model_name: 使用的模型名称（可选，默认 rsod-yolo11n）
+        model_name: 使用的模型名称（可选，默认 mab-yolo11m）
         user_id: 用户 ID（可选）
 
     返回：
@@ -104,7 +104,7 @@ async def detect_single_image(
                 "boxes": [...],
                 "total_objects": 5,
                 "detection_time": 0.523,
-                "model_name": "rsod-yolo11n",
+                "model_name": "mab-yolo11m",
                 "created_at": "2024-12-01T14:30:00"
             }
         }
@@ -187,7 +187,7 @@ async def get_detection_history(
                     "result_image_url": "http://localhost:8000/static/results/xxx.jpg",
                     "total_objects": 3,
                     "created_at": "2024-12-01T14:30:00",
-                    "model_name": "rsod-yolo11n"
+                    "model_name": "mab-yolo11m"
                 },
                 ...
             ],
@@ -213,12 +213,12 @@ async def get_detection_history(
             # 构建 FastAPI 代理接口 URL
             # 格式：http://localhost:8000/api/detection/files/{bucket}/{filename}
             if original_filename:
-                image_url = f"http://localhost:8000/api/detection/files/rsod-original/{original_filename}"
+                image_url = f"http://localhost:8000/api/detection/files/mab-original/{original_filename}"
             else:
                 image_url = ""
             
             if result_filename:
-                result_url = f"http://localhost:8000/api/detection/files/rsod-results/{result_filename}"
+                result_url = f"http://localhost:8000/api/detection/files/mab-results/{result_filename}"
             else:
                 result_url = ""
 
@@ -228,7 +228,7 @@ async def get_detection_history(
                 result_image_url=result_url,
                 total_objects=record.total_objects or 0,
                 created_at=record.created_at,
-                model_name=record.model_name or "rsod-yolo11n",
+                model_name=record.model_name or "mab-yolo11m",
                 filename=original_filename or "detection.jpg",
                 status=record.status or "completed",
                 type=record.type or "single",
@@ -289,12 +289,12 @@ async def get_detection_by_id(
         
         # 构建 FastAPI 代理接口 URL
         if original_filename:
-            image_url = f"http://localhost:8000/api/detection/files/rsod-original/{original_filename}"
+            image_url = f"http://localhost:8000/api/detection/files/mab-original/{original_filename}"
         else:
             image_url = ""
         
         if result_filename:
-            result_url = f"http://localhost:8000/api/detection/files/rsod-results/{result_filename}"
+            result_url = f"http://localhost:8000/api/detection/files/mab-results/{result_filename}"
         else:
             result_url = ""
 
@@ -323,7 +323,7 @@ async def get_detection_by_id(
             boxes=boxes,
             total_objects=record.total_objects or 0,
             detection_time=record.detection_time or 0,
-            model_name=record.model_name or "rsod-yolo11n",
+            model_name=record.model_name or "mab-yolo11m",
             created_at=record.created_at
         )
 

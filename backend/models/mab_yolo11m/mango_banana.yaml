@@ -1,0 +1,20 @@
+# Mango_Banana_Dataset 配置文件
+# 芒果香蕉成熟度检测 - 4分类
+
+# 数据集根目录（相对于训练脚本的位置）
+path: Mango_Banana_Dataset
+
+# 训练集和验证集路径
+train: train/images
+val: val/images      # 使用 test 作为验证集（如果数据量小，建议从 train 分出一部分做 val）
+test: test/images
+
+# 类别数量
+nc: 4
+
+# 类别名称（必须与 classes.txt 顺序一致！）
+names:
+  0: Raw_Banana      # 未成熟香蕉
+  1: Raw_Mango       # 未成熟芒果
+  2: Ripe_Banana     # 成熟香蕉
+  3: Ripe_Mango      # 成熟芒果

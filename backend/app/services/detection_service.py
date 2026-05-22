@@ -115,7 +115,7 @@ class DetectionService:
         # 本地模型信息存储路径
         self.local_model_info_path = Path(settings.yolo_model_path).parent / "model_info.json"
 
-        # 类别名称映射字典（RSOD 数据集 4 类）
+        # 类别名称映射字典（mab 数据集 4 类）
         self.class_names = {}
 
         # 加载 YOLO 模型（智能版本检查）
@@ -281,20 +281,20 @@ class DetectionService:
         初始化类别名称映射
 
         功能：
-        - 定义 RSOD 数据集的 4 类目标名称
+        - 定义 mab 数据集的 4 类目标名称
         - 类别 ID 从 0 开始
 
         说明：
-        - RSOD 数据集包含 4 种遥感目标
-        - 支持飞机、油罐、立交桥、操场的检测
+        - mab 数据集包含 4 种目标
+        - 支持未成熟香蕉、未成熟芒果、成熟香蕉、成熟芒果
         """
-        # RSOD 数据集 4 类目标名称映射
+        # mab 数据集 4 类目标名称映射
         # 类别 ID：目标名称
         self.class_names = {
-            0: "aircraft",    # 飞机
-            1: "oiltank",     # 油罐
-            2: "overpass",    # 立交桥
-            3: "playground",  # 操场
+            0: "Raw_Banana",    # 未成熟香蕉
+            1: "Raw_Mango",     # 未成熟芒果
+            2: "Ripe_Banana",    # 成熟香蕉
+            3: "Ripe_Mango",  # 成熟芒果
         }
 
     def get_class_chinese_name(self, class_name: str) -> str:
@@ -308,17 +308,17 @@ class DetectionService:
             str: 类别中文名称
         """
         chinese_names = {
-            "aircraft": "飞机",
-            "oiltank": "油罐",
-            "overpass": "立交桥",
-            "playground": "操场"
+            "Raw_Banana": "未成熟香蕉",
+            "Raw_Mango": "未成熟芒果",
+            "Ripe_Banana": "成熟香蕉",
+            "Ripe_Mango": "成熟芒果"
         }
         return chinese_names.get(class_name, class_name)
 
     def detect_single_image(self, 
                            image_path: str, 
                            user_id: Optional[str] = None,
-                           model_name: str = "rsod-yolo11n",
+                           model_name: str = "mab-yolo11m",
                            minio_svc = None) -> DetectionResult:
         """
         单图目标检测
@@ -416,8 +416,8 @@ class DetectionService:
         # results[0].plot() 返回带检测框的图片（NumPy 数组）
         annotated_image = results[0].plot()
 
-        # 将图片从 RGB 格式转换为 BGR 格式（OpenCV 需要）
-        annotated_image_bgr = cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR)
+        # 无需将图片从 RGB 格式转换为 BGR 格式（OpenCV 需要）
+        annotated_image_bgr = annotated_image
 
         # 将图片编码为 JPEG 格式，获取字节数据
         _, image_bytes = cv2.imencode('.jpg', annotated_image_bgr)
@@ -458,8 +458,8 @@ class DetectionService:
 
         # 构建 FastAPI 代理接口 URL
         # 格式：http://localhost:8000/api/detection/files/{bucket}/{filename}
-        original_image_url = f"http://localhost:8000/api/detection/files/rsod-original/{original_object_name}"
-        result_image_url = f"http://localhost:8000/api/detection/files/rsod-results/{result_object_name}"
+        original_image_url = f"http://localhost:8000/api/detection/files/mab-original/{original_object_name}"
+        result_image_url = f"http://localhost:8000/api/detection/files/mab-results/{result_object_name}"
 
         # 构建检测结果对象
         return DetectionResult(

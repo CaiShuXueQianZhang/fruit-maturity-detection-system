@@ -1,0 +1,98 @@
+# ==================================
+# Python 后端
+# ==================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+build/
+dist/
+downloads/
+eggs/
+*.egg
+*.egg-info/
+MANIFEST
+
+# 虚拟环境
+backend/.venv/
+venv/
+ENV/
+env/
+
+# ==================================
+# 环境配置（敏感信息）
+# ==================================
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# ==================================
+# IDE 配置
+# ==================================
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# ==================================
+# 日志文件
+# ==================================
+*.log
+logs/
+
+# ==================================
+# AI 模型（不应提交到大仓库）
+# ==================================
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+*.weights
+*.ckpt
+
+# YOLO 训练输出目录
+runs/
+yolo_dataset/
+
+# ==================================
+# 数据文件（不应提交）
+# ==================================
+# 训练好的模型（保留目录结构）
+backend/models/rsod_yolo11m/
+!backend/models/.gitkeep
+backend/models/yolo11m.pt
+
+# 原始数据集
+backend/data/*
+!backend/data/.gitkeep
+
+# 静态文件目录（上传图片、检测结果）
+backend/static/uploads/*
+backend/static/results/*
+!backend/static/uploads/.gitkeep
+!backend/static/results/.gitkeep
+!backend/static/.gitkeep
+
+# ==================================
+# Docker 数据目录（统一存储）
+# ==================================
+storage/postgres/data/
+storage/postgres/init/
+storage/minio/data/
+storage/minio/config/
+storage/redis/data/
+!storage/.gitkeep
+
+# ==================================
+# 前端
+# ==================================
+node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/uploads/

@@ -1,0 +1,34 @@
+# 虚拟环境（最关键）
+.venv/
+venv/
+env/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Git
+.git/
+.gitignore
+
+# 数据和大文件
+data/
+models/
+*.pt
+*.pth
+*.onnx
+*.zip
+*.tar.gz
+
+# IDE
+.idea/
+.vscode/
+
+# 其他
+*.md
+docs/
+uploads/
+results/
+runs/
